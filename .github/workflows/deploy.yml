@@ -63,9 +63,6 @@ jobs:
     test:
         # Requires build job results
         needs: build
-        permissions:
-            contents: read
-            pages: write
         runs-on: ubuntu-latest
         steps:
             - name: Download artifacts
@@ -80,9 +77,6 @@ jobs:
                 instance: ${{ env.INSTANCE }}
 
     deploy:
-        permissions:
-            contents: read
-            pages: write
         environment:
             name: github-pages
             url: ${{ steps.deployment.outputs.page_url }}
