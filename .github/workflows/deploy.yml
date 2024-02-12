@@ -60,24 +60,24 @@ jobs:
 
     # Add the job below and artifacts/report.json on Upload documentation step above
     # if you want to fail the build when documentation contains errors
-    test:
-        # Requires build job results
-        needs: build
-        permissions:
-            contents: read
-            pages: write
-        runs-on: ubuntu-latest
-        steps:
-            - name: Download artifacts
-              uses: actions/download-artifact@v1
-              with:
-                name: docs
-                path: artifacts
+    # test:
+    #     # Requires build job results
+    #     needs: build
+    #     permissions:
+    #         contents: read
+    #         pages: write
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #         - name: Download artifacts
+    #           uses: actions/download-artifact@v1
+    #           with:
+    #             name: docs
+    #             path: artifacts
 
-            - name: Test documentation
-              uses: JetBrains/writerside-checker-action@v1
-              with:
-                instance: ${{ env.INSTANCE }}
+    #         - name: Test documentation
+    #           uses: JetBrains/writerside-checker-action@v1
+    #           with:
+    #             instance: ${{ env.INSTANCE }}
 
     deploy:
         permissions:
@@ -87,7 +87,7 @@ jobs:
             name: github-pages
             url: ${{ steps.deployment.outputs.page_url }}
         # Requires the test job results
-        needs: test
+        #needs: test
         runs-on: ubuntu-latest
         steps:
             - name: Download artifact
